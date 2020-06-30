@@ -11,7 +11,26 @@ In the common folder you will find repetitive configuration blocks representing 
 
 ## Device
 
-I forked this repo to use @bruxy70 and #BrianHanifin`code to program my own Irrigation Controller.
+I forked this repo to use @bruxy70 and #BrianHanifin` code to program my own Irrigation Controller. I use Home Assistant and ESPHome web interface instead of a display. I added zones 3 and 4 to #BrianHanifin irrigation.yaml. 
+I found the push buttons on the sonoff worked intermittenly. Changed all binary_sensor as shown below:
+
+binary_sensor:
+
+  - !include common/binary_sensors/status.yaml
+
+  # ============================================================================= #
+  # Buttons along the left side of the unit (R1, R2, R3, R4).
+  - platform: gpio
+    id: key1
+    pin:
+      number: $button1_gpio
+      mode: INPUT_PULLUP
+      inverted: True
+    filters:
+      - delayed_on_off: 100ms
+    on_press:
+      then:
+        - switch.toggle: irrigation_zone1   
 
 ### Irrigation Controller: irrigation.yaml
 #### [Sonoff 4ch Pro R2][esphome-sonoff4pro]
