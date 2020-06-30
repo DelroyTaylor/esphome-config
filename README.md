@@ -11,10 +11,12 @@ In the common folder you will find repetitive configuration blocks representing 
 
 ## Device
   # ============================================= #
+Sonoff 4ch Pro R2
+Orbit Heavy duty sprinkler valves
   
 I forked this repo to use @bruxy70 and #BrianHanifin` code to program my own Irrigation Controller. I use Home Assistant and ESPHome web interface instead of a display. Duplicated zones 1 and 2 to and increase to 4 zones in irrigation.yaml. 
-I found operating the push buttons on the sonoff worked intermittenly. Changed all binary_sensor debounce filter and trigger settings.
-  # ============================================================================= #
+I found operating the push buttons on the sonoff worked intermittenly. Changed binary_sensors debounce filters and trigger settings.
+  # ============================================= #
 
 ### Irrigation Controller: irrigation.yaml
 #### [Sonoff 4ch Pro R2][esphome-sonoff4pro]
