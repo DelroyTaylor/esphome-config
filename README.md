@@ -10,28 +10,12 @@ Configuration files for my ESP8266 / ESP32 plugs and boards for use with Home As
 In the common folder you will find repetitive configuration blocks representing status light, wifi, api, and logging. The Sonoff and Tuya Plugs share common code in the /common/templates/ folder. @AlexMekkering thank you for [showing us how powerful this is][config-includes].
 
 ## Device
-  # ============================================================================= #
+  # ============================================= #
   
-I forked this repo to use @bruxy70 and #BrianHanifin` code to program my own Irrigation Controller. I use Home Assistant and ESPHome web interface instead of a display. I added zones 3 and 4 to #BrianHanifin irrigation.yaml. 
-I found the push buttons on the sonoff worked intermittenly. Changed all binary_sensor as shown below:
-
-binary_sensor:
-
-  - !include common/binary_sensors/status.yaml
-
-  - platform: gpio
-    id: key1
-    pin:
-      number: $button1_gpio
-      mode: INPUT_PULLUP
-      inverted: True
-    filters:
-      - delayed_on_off: 100ms
-    on_press:
-      then:
-        - switch.toggle: irrigation_zone1   
-
+I forked this repo to use @bruxy70 and #BrianHanifin` code to program my own Irrigation Controller. I use Home Assistant and ESPHome web interface instead of a display. Duplicated zones 1 and 2 to and increase to 4 zones in irrigation.yaml. 
+I found operating the push buttons on the sonoff worked intermittenly. Changed all binary_sensor debounce filter and trigger settings.
   # ============================================================================= #
+
 ### Irrigation Controller: irrigation.yaml
 #### [Sonoff 4ch Pro R2][esphome-sonoff4pro]
 Our battery and cloud powered Melnor Raincloud/Aquatimer has been flaky off and on for years. Now even new batteries aren't resolving the problem. Also, there appears to be possible battery acid inside the battery compartment. I suspect the wireless radio may be dead despite being able to manually toggle the valves.
